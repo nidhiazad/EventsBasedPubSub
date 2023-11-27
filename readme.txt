@@ -21,7 +21,7 @@ java -cp /Users/nidhi/Documents/project/pub-sub-project/target/pub-sub-project-1
 
 java -cp  /Users/nidhi/Documents/project/pub-sub-project/target/pub-sub-project-1.0-SNAPSHOT.jar edu.scu.distributed.client.UserClient publisher 10.0.0.191 8090 10.0.0.191 6000
 
-send 10.0.0.191 6000 /topic44 Chk
+send 10.0.0.191 6000 /topic55 Chk This
 
 6005 serv3 local 8
 6010 serv2 local 3
