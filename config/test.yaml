@@ -1,0 +1,17 @@
+---
+app: pubsub
+version: 1.0
+topicDir: /Users/nidhi/Documents/project/pub-sub-project/TopicsRootFolder
+nodes:
+  - ip: 10.0.0.191
+    port: 6000
+  - ip: 10.0.0.191
+    port: 6005
+  - ip: 10.0.0.191
+    port: 6010
+#  - ip: 192.168.68.126
+#    port: 6000
+#  - ip: 192.168.68.126
+#    port: 6005
+#  - ip: 192.168.68.126
+#    port: 6010
