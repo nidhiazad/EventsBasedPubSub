@@ -56,12 +56,29 @@ public class Topics extends Node {
     // }
   }
 
-  public void loadTopics() {
-    File[] directories = new File(ROOT_FOLDER_NAME).listFiles(File::isDirectory);
+ public void loadTopics() {
+    File rootFolder = new File(ROOT_FOLDER_NAME);
+
+    if (!rootFolder.exists() || !rootFolder.isDirectory()) {
+      System.err.println("Invalid root folder: " + ROOT_FOLDER_NAME);
+      System.err.println("Exists: " + rootFolder.exists());
+      System.err.println("Is directory: " + rootFolder.isDirectory());
+      return;
+    }
+
+    File[] directories = rootFolder.listFiles(File::isDirectory);
+
+    if (directories == null) {
+      System.err.println("Error listing directories.");
+      return;
+    }
+
+    System.out.println("Number of directories: " + directories.length);
     topicsList = new ArrayList<>();
-    for (int i = 0; i < directories.length; i++) {
-      System.out.println("directory name- " + directories[i].getName());
-      topicsList.add(new Topic("/" + directories[i].getName(), "", 0));
+
+    for (File directory : directories) {
+      System.out.println("Directory name: " + directory.getName());
+      topicsList.add(new Topic("/" + directory.getName(), "", 0));
     }
   }
 
