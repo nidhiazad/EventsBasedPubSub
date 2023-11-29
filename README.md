@@ -54,6 +54,7 @@ Example : java -cp  ./target/pub-sub-project-1.0-SNAPSHOT.jar  edu.scu.distribut
 ### Getting Messages from Subscriber
 ### Retrieve messages from a subscriber client, specifying the server's host, port, and the subscription path.
 subscriber x.x.x.x 8071 xx.x.x.x 6005
+
 getMessages x.x.x.x 6000 /sev1
 
 ## Customization
