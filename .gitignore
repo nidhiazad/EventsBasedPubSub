@@ -1,0 +1,5 @@
+# Ignore target folder
+/target/
+
+# Other ignore rules can be added below
+
