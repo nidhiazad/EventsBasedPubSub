@@ -17,6 +17,7 @@ Follow the steps below to set up and run the Events Based PubSub system.
 
 git clone <repository-url>
 cd pub-sub-project
+
 Build the project using Maven.
 
 mvn clean install
