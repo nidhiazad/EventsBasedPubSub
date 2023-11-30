@@ -1,8 +1,8 @@
 package edu.scu.distributed.server;
 
 import edu.scu.distributed.models.Configuration;
+import edu.scu.distributed.models.Events;
 import edu.scu.distributed.models.Node;
-import edu.scu.distributed.models.Topics;
 import edu.scu.distributed.server.commons.Util;
 import edu.scu.distributed.server.leaderelection.JobScheduler;
 import edu.scu.distributed.server.services.TopicService;
@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 
 public class TopicServiceImpl implements PubSubServer {
 
-  private static Topics topics;
+  private static Events events;
   private final int port;
   private TopicService topicService;
 
@@ -23,8 +23,8 @@ public class TopicServiceImpl implements PubSubServer {
 
   JobScheduler scheduler;
 
-  public TopicServiceImpl(Topics topics, int port) {
-    this.topics = topics;
+  public TopicServiceImpl(Events events, int port) {
+    this.events = events;
     this.port = port;
   }
 
@@ -35,8 +35,8 @@ public class TopicServiceImpl implements PubSubServer {
     String confFilename = "/Users/nidhi/Documents/project/pub-sub-project/config";
     Configuration configuration = Util.getConfiguration(confFilename);
     // NodeSelector nodeSelector = Util.createCluster(configuration, port);
-    Topics topics1 = new Topics("10.0.0.131", port);
-    TopicServiceImpl server = new TopicServiceImpl(topics1, port);
+    Events events1 = new Events("10.0.0.131", port);
+    TopicServiceImpl server = new TopicServiceImpl(events1, port);
     try {
       server.init();
       //  server start

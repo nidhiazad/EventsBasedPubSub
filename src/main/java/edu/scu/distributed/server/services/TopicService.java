@@ -1,7 +1,7 @@
 package edu.scu.distributed.server.services;
 
+import edu.scu.distributed.models.Events;
 import edu.scu.distributed.models.Node;
-import edu.scu.distributed.models.Topics;
 import edu.scu.distributed.server.commons.NodeSelector;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -10,13 +10,13 @@ import java.util.List;
 
 public class TopicService extends TopicServiceGrpc.TopicServiceImplBase {
 
-  private final Topics topics;
+  private final Events events;
 
   private final NodeSelector nodeSelector;
 
   public TopicService(NodeSelector selector) {
     nodeSelector = selector;
-    this.topics = new Topics("", 0);
+    this.events = new Events("", 0);
   }
 
   @Override
@@ -24,7 +24,7 @@ public class TopicService extends TopicServiceGrpc.TopicServiceImplBase {
     // super.subscribeToTopic(request, responseObserver);
     // SubscribeTo_localhost_8070_/topic1
     String result =
-        topics.addSubscriberOperation(
+        events.addSubscriberOperation(
             "SubscribeTo_"
                 + request.getIpAddress()
                 + "_"
@@ -42,7 +42,7 @@ public class TopicService extends TopicServiceGrpc.TopicServiceImplBase {
         new edu.scu.distributed.models.Message(
             request.getTopic() + "_" + request.getData(), request.getSender());
     System.out.println("input message: " + message.message + ", sender: " + message.sender);
-    String result = topics.publishMessageOperation(message);
+    String result = events.publishMessageOperation(message);
     Status response = Status.newBuilder().setValue(result).build();
     responseObserver.onNext(response);
     int port = request.getReceiverPort();
@@ -82,7 +82,7 @@ public class TopicService extends TopicServiceGrpc.TopicServiceImplBase {
     // GetMessages_localhost_8070_/topic1
     // request.getName() - topic name
     String result =
-        topics.getMessagesOperation(
+        events.getMessagesOperation(
             new edu.scu.distributed.models.Message(
                 "GetMessages_"
                     + request.getName()

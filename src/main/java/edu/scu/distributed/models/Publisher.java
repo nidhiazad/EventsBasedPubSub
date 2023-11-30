@@ -1,6 +1,6 @@
 package edu.scu.distributed.models;
 
-import edu.scu.distributed.client.UserClient;
+import edu.scu.distributed.client.ClientService;
 import edu.scu.distributed.server.services.Status;
 
 public class Publisher extends Node {
@@ -25,11 +25,11 @@ public class Publisher extends Node {
         message = message + " " + arr[i];
       }
       //  String message = arr[4];
-      SendMessage(new Topic(topicName, topicIp, topicPort), new Message(message, this.name));
+      SendMessage(new Event(topicName, topicIp, topicPort), new Message(message, this.name));
     }
   }
 
-  public void SendMessage(Topic t, Message m) {
+  public void SendMessage(Event t, Message m) {
     System.out.println("message is " + m);
     edu.scu.distributed.server.services.Message request =
         edu.scu.distributed.server.services.Message.newBuilder()
@@ -37,9 +37,9 @@ public class Publisher extends Node {
             .setData(m.message)
             .setSender(ip + ":" + port)
             .setReplicate(true)
-            .setReceiverPort(UserClient.serverPort)
+            .setReceiverPort(ClientService.serverPort)
             .build();
-    Status response = UserClient.getStub().publishMessage(request);
+    Status response = ClientService.getStub().publishMessage(request);
     System.out.println("response: " + response.getValue());
   }
 }

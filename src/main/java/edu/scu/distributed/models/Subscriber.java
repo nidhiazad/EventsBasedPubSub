@@ -1,6 +1,6 @@
 package edu.scu.distributed.models;
 
-import edu.scu.distributed.client.UserClient;
+import edu.scu.distributed.client.ClientService;
 import edu.scu.distributed.server.services.GetMessageRequest;
 import edu.scu.distributed.server.services.Status;
 import edu.scu.distributed.server.services.SubscribeRequest;
@@ -20,7 +20,7 @@ public class Subscriber extends Node {
         String ip = arr[1];
         int port = Integer.parseInt(arr[2]);
         String topicName = arr[3];
-        Topic t = new Topic(topicName, ip, port);
+        Event t = new Event(topicName, ip, port);
         System.out.println("Starting subscribe Task");
         subscribeTo(t);
       }
@@ -37,23 +37,23 @@ public class Subscriber extends Node {
         String ip = arr[1];
         int port = Integer.parseInt(arr[2]);
         String topicName = arr[3];
-        Topic t = new Topic(topicName, ip, port);
+        Event t = new Event(topicName, ip, port);
         System.out.println("Starting getMessages Task");
         getMessages(t);
       }
     }
   }
 
-  public void getMessages(Topic t) {
+  public void getMessages(Event t) {
     // ReceiveTask task = new ReceiveTask(t, topicName);
     // task.start();
     GetMessageRequest request =
         GetMessageRequest.newBuilder().setName(t.name).setIpAddress(ip).setPort(port + "").build();
-    Status response = UserClient.getStub().getMessages(request);
+    Status response = ClientService.getStub().getMessages(request);
     System.out.println("response: " + response.getValue());
   }
 
-  public void subscribeTo(Topic t) {
+  public void subscribeTo(Event t) {
     // SubscribeTask task = new SubscribeTask(t, new
     // Message("SubscribeTo_"+ipAddr+"_"+port+"_"+topicName,""));
     // task.start();
@@ -63,7 +63,7 @@ public class Subscriber extends Node {
 
     SubscribeRequest request =
         SubscribeRequest.newBuilder().setTopic(t.name).setIpAddress(ip).setPort(port + "").build();
-    Status response = UserClient.getStub().subscribeToTopic(request);
+    Status response = ClientService.getStub().subscribeToTopic(request);
     System.out.println("response: " + response.getValue());
   }
 }

@@ -1,8 +1,8 @@
 package edu.scu.distributed.server;
 
 import edu.scu.distributed.models.Configuration;
+import edu.scu.distributed.models.Events;
 import edu.scu.distributed.models.Node;
-import edu.scu.distributed.models.Topics;
 import edu.scu.distributed.server.commons.NodeSelector;
 import edu.scu.distributed.server.commons.Util;
 import edu.scu.distributed.server.leaderelection.JobScheduler;
@@ -42,7 +42,7 @@ public class PubSubServerImpl implements PubSubServer {
     System.out.println("Given config_file: " + confFilename);
     Configuration configuration = Util.getConfiguration(confFilename);
     // Topics.ROOT_FOLDER_NAME = configuration.getTopicDir();
-    Topics.ROOT_FOLDER_NAME = args[2];
+    Events.ROOT_FOLDER_NAME = args[2];
     NodeSelector nodeSelector = Util.createCluster(configuration, port);
     PubSubServerImpl server = new PubSubServerImpl(nodeSelector, port);
     try {
