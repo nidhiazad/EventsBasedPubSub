@@ -24,13 +24,13 @@ mvn clean install
 ### Starting PubSub Servers
 ### Start multiple PubSub servers, each with a unique server port and a path to a folder for managing topics.
 
-java -cp ./target/pub-sub-project-1.0-SNAPSHOT.jar edu.scu.distributed.server.PubSubServerImpl ./config/test.yaml server-port-1 path-to-folder-1
+java -cp ./target/pub-sub-project-1.0-SNAPSHOT.jar edu.scu.distributed.server.ServerInterfaceImpl ./config/test.yaml server-port-1 path-to-folder-1
 
-java -cp ./target/pub-sub-project-1.0-SNAPSHOT.jar edu.scu.distributed.server.PubSubServerImpl ./config/test.yaml server-port-2 path-to-folder-2
+java -cp ./target/pub-sub-project-1.0-SNAPSHOT.jar edu.scu.distributed.server.ServerInterfaceImpl ./config/test.yaml server-port-2 path-to-folder-2
 
-java -cp ./target/pub-sub-project-1.0-SNAPSHOT.jar edu.scu.distributed.server.PubSubServerImpl ./config/test.yaml server-port-3 path-to-folder-3
+java -cp ./target/pub-sub-project-1.0-SNAPSHOT.jar edu.scu.distributed.server.ServerInterfaceImpl ./config/test.yaml server-port-3 path-to-folder-3
 
-Example: java -cp ./target/pub-sub-project-1.0-SNAPSHOT.jar edu.scu.distributed.server.PubSubServerImpl ./config/test.yaml 6000 /Users/sahanakuchur/Desktop/Demo/EventsBasedPubSub/TopicsRootFolder/sev1
+Example: java -cp ./target/pub-sub-project-1.0-SNAPSHOT.jar edu.scu.distributed.server.ServerInterfaceImpl ./config/test.yaml 6000 /Users/sahanakuchur/Desktop/Demo/EventsBasedPubSub/TopicsRootFolder/sev1
 
 ### Starting Publisher Client
 ### Start a publisher client, specifying the publisher's host, port, and the server's host and port.

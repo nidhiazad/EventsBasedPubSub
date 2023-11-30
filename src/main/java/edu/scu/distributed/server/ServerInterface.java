@@ -4,7 +4,7 @@ import edu.scu.distributed.models.Node;
 import edu.scu.distributed.server.services.TopicService;
 import java.io.IOException;
 
-public interface PubSubServer {
+public interface ServerInterface {
 
   // read config file for all the nodes, initialize the nodes
   public void init() throws IOException;

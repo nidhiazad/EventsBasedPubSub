@@ -13,7 +13,7 @@ import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TopicServiceImpl implements PubSubServer {
+public class TopicServiceImpl implements ServerInterface {
 
   private static Events events;
   private final int port;
